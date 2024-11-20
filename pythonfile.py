@@ -9,7 +9,7 @@ import datetime
 # Authenticate Google APIs using Streamlit secrets
 def authenticate_google():
     scope = ["https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/spreadsheets"]
-    # Access credentials from Streamlit secrets
+    # Use Streamlit secrets for credentials
     credentials_info = st.secrets["google"]
     credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_info, scope)
     
