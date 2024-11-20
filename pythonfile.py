@@ -1,18 +1,24 @@
 import streamlit as st
+from oauth2client.service_account import ServiceAccountCredentials
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 import datetime
 
-# Authenticate Google APIs (Drive and Sheets)
+# Authenticate Google APIs using Streamlit secrets
 def authenticate_google():
     scope = ["https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/spreadsheets"]
-    credentials = ServiceAccountCredentials.from_json_keyfile_name("streamlit-integration-308ac8feb4ad.json", scope)
+    # Access credentials from Streamlit secrets
+    credentials_info = st.secrets["google"]
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_info, scope)
+    
+    # Authenticate Google Drive
     gauth = GoogleAuth()
     gauth.credentials = credentials
     drive = GoogleDrive(gauth)
+    
+    # Authenticate Google Sheets
     gspread_client = gspread.authorize(credentials)
     return drive, gspread_client
 
