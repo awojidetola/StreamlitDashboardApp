@@ -1,2 +1,4 @@
 PyDrive
 gspread
+gcsfs
+st-files-connection
