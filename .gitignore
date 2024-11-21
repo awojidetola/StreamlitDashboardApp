@@ -3,3 +3,4 @@ streamlit-integration-308ac8feb4ad.json
 *.TOML
 *.toml
 *.Toml
+.venv
