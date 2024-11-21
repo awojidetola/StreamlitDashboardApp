@@ -1,2 +1,5 @@
 streamlit-integration-308ac8feb4ad.json
 *.json
+*.TOML
+*.toml
+*.Toml
